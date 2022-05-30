@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+	<%- include('./partials/head') %>
+	<body>
+		<%- include('./partials/header') %>
+		<div class="container">
+			<form action="" method="post">
+				<% if (user.membership_status) { %>
+				<p>You are already a member!</p>
+				<% } else { %>
+				<div class="mb-3">
+					<label for="memberpassword" class="form-label">Enter password to become a member</label>
+					<input
+						type="text"
+						class="form-control"
+						type="password"
+						name="memberpassword"
+						id="memberpassword"
+					/>
+				</div>
+				<% } %>
+				<div class="mb-3">
+					<label for="adminpassword" class="form-label">Enter password to become an admin</label>
+					<input
+						type="text"
+						class="form-control"
+						type="password"
+						name="adminpassword"
+						id="adminpassword"
+					/>
+				</div>
+				<button class="btn btn-primary">Submit</button>
+			</form>
+		</div>
+	</body>
+</html>

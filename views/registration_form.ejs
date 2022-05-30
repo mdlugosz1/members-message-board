@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+	<%- include('./partials/head') %>
+	<body>
+		<div class="container">
+			<h1 style="text-align: center"><%= title %></h1>
+			<form
+				action=""
+				method="post"
+				class="form form-register"
+				style="max-width: 600px; margin: 0 auto"
+			>
+				<div class="mb-3">
+					<label class="form-label" for="name">Name</label>
+					<input class="form-control" type="text" name="name" id="name" value="<%= typeof user !==
+					'undefined' ? user.first_name : ""%>"/>
+				</div>
+				<div class="mb-3">
+					<label class="form-label" for="lastName">Last name</label>
+					<input class="form-control" type="text" name="lastName" id="lastName" value="<%= typeof
+					user !== 'undefined' ? user.last_name : ""%>"/>
+				</div>
+				<div class="mb-3">
+					<label class="form-label" for="username">User name</label>
+					<input class="form-control" type="text" name="username" id="username" value="<%= typeof
+					user !== 'undefined' ? user.username : ""%>"/>
+				</div>
+				<div class="mb-3">
+					<label class="form-label" for="email">E-mail</label>
+					<input class="form-control" type="email" name="email" id="email" value="<%= typeof user
+					!== 'undefined' ? user.email : ""%>"/>
+				</div>
+				<div class="mb-3">
+					<label class="form-label" for="password">Password</label>
+					<input class="form-control" type="password" name="password" id="password" value="" />
+				</div>
+				<div class="mb-3">
+					<label class="form-label" for="confirmPassword">Confirm password</label>
+					<input
+						class="form-control"
+						type="password"
+						name="confirmPassword"
+						id="confirmPassword"
+						value=""
+					/>
+				</div>
+				<button type="submit" class="btn btn-primary">Submit</button>
+			</form>
+		</div>
+	</body>
+</html>

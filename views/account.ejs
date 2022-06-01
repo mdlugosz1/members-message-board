@@ -5,9 +5,10 @@
 		<%- include('./partials/header') %>
 		<div class="container">
 			<form action="" method="post">
-				<% if (user.membership_status) { %>
+				<% if (typeof user.membership_status !== 'undefined' && user.membership_status === true) {
+				%>
 				<p>You are already a member!</p>
-				<% } else { %>
+				<% } else if (user.membership_status === false){ %>
 				<div class="mb-3">
 					<label for="memberpassword" class="form-label">Enter password to become a member</label>
 					<input

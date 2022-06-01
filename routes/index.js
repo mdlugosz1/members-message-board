@@ -2,6 +2,7 @@ var express = require("express");
 var router = express.Router();
 
 const user_controller = require("../controllers/userController");
+const message_controller = require("../controllers/messageController");
 
 /* GET register page */
 router.get("/register", user_controller.user_register_get);
@@ -24,9 +25,10 @@ router.get("/account", user_controller.account_get);
 /* Account post */
 router.post("/account", user_controller.account_post);
 
+/* POST message */
+router.post("/", message_controller.messages_post);
+
 /* GET home page. */
-router.get("/", function (req, res, next) {
-	res.render("index", { title: "Express", user: res.locals.currentUser });
-});
+router.get("/", message_controller.messages_get);
 
 module.exports = router;

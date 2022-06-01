@@ -5,7 +5,37 @@
 		<%- include('./partials/header') %>
 		<div class="container">
 			<h1><%= title %></h1>
-			<p>Welcome to <%= title %></p>
+			<div class="message-board">
+				<% if (messages.length) { messages.forEach(message => { %>
+				<div
+					class="message"
+					style="
+						margin-bottom: 10px;
+						border: 1px solid black;
+						background-color: mintcream;
+						color: black;
+					"
+				>
+					<p><%= message.content %></p>
+
+					<% let displayName; if (!user || user.membership_status === false) { displayName =
+					'Anonymous' } if (user && user.membership_status === true) { displayName =
+					message.message_author; }%>
+					<span>Posted by <%= displayName %> </span>
+				</div>
+				<% }); %> <% } %>
+			</div>
+			<% if (user.membership_status === true) { %>
+			<form action="" method="post" style="max-width: 600px; margin: 0 auto">
+				<label for="message" class="form-label">Message</label>
+				<textarea type="text" class="form-control" name="message" cols="10" rows="10"></textarea>
+				<button class="btn btn-primary" type="submit">Send message</button>
+			</form>
+			<% } else { %>
+			<div class="not-logged-in">
+				<p>You must be logged in and be membership to write messages</p>
+			</div>
+			<% } %>
 		</div>
 	</body>
 </html>

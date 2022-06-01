@@ -16,6 +16,12 @@
 						color: black;
 					"
 				>
+					<% if (typeof user !== 'undefined' && user.admin) { %>
+					<form action="/delete" method="post">
+						<input type="hidden" name="deletemessage" value="<%= message._id %>" />
+						<button type="submit" class="btn btn-danger">X</button>
+					</form>
+					<% } %>
 					<p><%= message.content %></p>
 
 					<% let displayName; if (!user || user.membership_status === false) { displayName =
@@ -25,7 +31,7 @@
 				</div>
 				<% }); %> <% } %>
 			</div>
-			<% if (user.membership_status === true) { %>
+			<% if (typeof user !== 'undefined' && user.membership_status === true) { %>
 			<form action="" method="post" style="max-width: 600px; margin: 0 auto">
 				<label for="message" class="form-label">Message</label>
 				<textarea type="text" class="form-control" name="message" cols="10" rows="10"></textarea>

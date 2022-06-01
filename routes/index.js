@@ -25,6 +25,9 @@ router.get("/account", user_controller.account_get);
 /* Account post */
 router.post("/account", user_controller.account_post);
 
+/* DELETE message */
+router.post("/delete", message_controller.message_delete);
+
 /* POST message */
 router.post("/", message_controller.messages_post);
 

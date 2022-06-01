@@ -2,6 +2,7 @@ const async = require("async");
 const Message = require("../models/message");
 const User = require("../models/user");
 const { body, validationResult } = require("express-validator");
+const { redirect } = require("express/lib/response");
 
 exports.messages_get = function (req, res, next) {
 	Message.find({})
@@ -55,3 +56,20 @@ exports.messages_post = [
 		}
 	},
 ];
+
+exports.message_delete = function (req, res, next) {
+	User.updateOne(
+		{ messages: req.body.deletemessage },
+		{ $pull: { messages: req.body.deletemessage } },
+		{},
+		(err) => {
+			if (err) {
+				return next(err);
+			}
+
+			Message.findByIdAndDelete(req.body.deletemessage, (err) => {
+				res.redirect("/");
+			});
+		}
+	);
+};

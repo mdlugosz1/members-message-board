@@ -65,6 +65,7 @@ exports.user_register_post = [
 				email: req.body.email,
 				password: hash,
 				membership_status: false,
+				admin: false,
 			});
 
 			if (!errors.isEmpty()) {
@@ -111,6 +112,19 @@ exports.account_post = function (req, res, next) {
 		User.findOneAndUpdate(
 			{ username: res.locals.currentUser.username },
 			{ membership_status: true },
+			{},
+			(err, user) => {
+				if (err) {
+					return next(err);
+				}
+
+				res.redirect("/");
+			}
+		);
+	} else if (req.body.adminpassword === process.env.ADMIN_PASS) {
+		User.findOneAndUpdate(
+			{ username: res.locals.currentUser.username },
+			{ admin: true },
 			{},
 			(err, user) => {
 				if (err) {

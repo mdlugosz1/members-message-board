@@ -19,7 +19,9 @@
 						id="memberpassword"
 					/>
 				</div>
-				<% } %>
+				<% } %> <% if (typeof user.admin !== 'undefined' && user.admin === true) { %>
+				<p>You are already an admin!</p>
+				<% } else if (user.membership_status === false){ %>
 				<div class="mb-3">
 					<label for="adminpassword" class="form-label">Enter password to become an admin</label>
 					<input
@@ -30,6 +32,7 @@
 						id="adminpassword"
 					/>
 				</div>
+				<% } %>
 				<button class="btn btn-primary">Submit</button>
 			</form>
 		</div>
